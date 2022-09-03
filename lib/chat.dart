@@ -96,7 +96,7 @@ class ChatState extends State<Chat> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.pinkAccent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           color: Colors.white,
@@ -108,14 +108,12 @@ class ChatState extends State<Chat> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: size.width * 0.60,
-              child: Container(
-                child: const Text(
-                  'Chat',
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                  textAlign: TextAlign.left,
-                ),
+              child: const Text(
+                'She Chat',
+                style: TextStyle(fontSize: 15, color: Colors.white),
+                textAlign: TextAlign.left,
               ),
             ),
           ],
@@ -219,10 +217,10 @@ class ChatState extends State<Chat> {
                       maxLength: 500,
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: size.width * 0.20,
                     child: IconButton(
-                      icon: const Icon(Icons.send, color: Colors.redAccent),
+                      icon: const Icon(Icons.send, color: Colors.pinkAccent),
                       onPressed: () {
                         _sendMessage();
                       },

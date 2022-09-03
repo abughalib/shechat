@@ -1,6 +1,7 @@
 import 'package:shechat/firebase/messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shechat/login/home_decide.dart';
 import 'chat.dart';
 
 void main() async {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomeDecide(),
     );
   }
 }
@@ -30,6 +31,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: size.width * 0.80,
                                 child: TextField(
                                   controller: _nameController,
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 40,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.deepOrange,
+                              backgroundColor: Colors.pinkAccent,
                             ),
                             onPressed: _openChat,
                             child: const Text('Go to Chat',
