@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "391312455841",
+    "project_id": "she-chat-8ab9c",
+    "storage_bucket": "she-chat-8ab9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391312455841:android:6c6d09b805f54c7f8458e0",
+        "android_client_info": {
+          "package_name": "com.example.shechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391312455841-ole5s1pu8rnb677ndft5fduhcl122pke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shechat",
+            "certificate_hash": "128c681fe89d8eda2963ee8cd45121561feb5ee1"
+          }
+        },
+        {
+          "client_id": "391312455841-pehbdf8fk9nkh16i27sa2c7sloun2aqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8weyQPtbwSRdVNc3462WY7qVqiioYhFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391312455841-pehbdf8fk9nkh16i27sa2c7sloun2aqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
