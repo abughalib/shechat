@@ -20,6 +20,8 @@ class HomeDecide extends StatelessWidget {
             );
           }
           debugPrint(snapshot.data.toString());
+          // if not female show the you are not allower screen
+          
           if (snapshot.hasData) {
             return const WelcomePage();
           }
