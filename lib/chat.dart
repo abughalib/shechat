@@ -1,4 +1,5 @@
 import 'package:shechat/firebase/messaging.dart';
+import 'package:shechat/login/home_decide.dart';
 import 'package:shechat/models/messages_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -96,7 +97,10 @@ class ChatState extends State<Chat> {
           icon: const Icon(Icons.arrow_back),
           color: Colors.white,
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeDecide()),
+                (route) => false);
           },
         ),
         title: Row(

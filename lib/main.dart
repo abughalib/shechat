@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shechat/firebase/messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    // after 3 seconds go to chat screen
+    User user = FirebaseAuth.instance.currentUser!;
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Chat(
+              user: user.uid,
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -50,93 +66,44 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  void _openChat() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Chat(user: _nameController.text),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.maybeOf(context)!.size;
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent,
+        title: Text(widget.title),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeDecide()),
+                (route) => false);
+          },
+        ),
+      ),
+      backgroundColor: Colors.pinkAccent,
       resizeToAvoidBottomInset: true,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: ListView(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(vertical: 100),
-              children: <Widget>[
-                Column(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 5),
-                          height: 150,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.80,
-                                child: TextField(
-                                  controller: _nameController,
-                                  cursorColor: Colors.black,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Name',
-                                    labelStyle: TextStyle(
-                                        fontSize: 15, color: Colors.black),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black),
-                                    ),
-                                    disabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey),
-                                    ),
-                                  ),
-                                  style: const TextStyle(fontSize: 20),
-                                  keyboardType: TextInputType.text,
-                                  maxLength: 20,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 30),
-                          width: size.width * 0.80,
-                          height: 40,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.pinkAccent,
-                            ),
-                            onPressed: _openChat,
-                            child: const Text('Go to Chat',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircularProgressIndicator(
+                color: Colors.white,
+              ),
+              SizedBox(height: size.height * 0.05),
+              const Text(
+                'Connecting you to a Random SheChat user',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
