@@ -49,21 +49,27 @@ class _MyLoginState extends State<MyLogin> {
                         children: [
                           // button for google login
                           GestureDetector(
-                            onTap: () => {
-                              
-                              FirebaseAuth.instance
-                                  .signInWithAuthProvider(GithubAuthProvider())
-                                  .then(
-                                    (value) => {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeDecide(),
-                                        ),
-                                      )
-                                    },
-                                  ),
+                            onTap: () {
+                              try {
+                                FirebaseAuth.instance
+                                    .signInWithAuthProvider(
+                                        GoogleAuthProvider())
+                                    .then(
+                                      (value) => {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeDecide(),
+                                          ),
+                                        )
+                                      },
+                                    );
+                              } catch (e) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Login Failed: $e')));
+                              }
                             },
                             child: Container(
                               height: 50,

@@ -55,16 +55,11 @@ class ChatState extends State<Chat> {
   Future<void> initSocket() async {
     debugPrint('Connecting to chat service');
     String? registrationToken = await Messaging.getToken();
-    socket = io.io(
-        'https://16e2-2402-e280-222f-95e-489b-f996-4525-d3e.ngrok.io',
-        <String, dynamic>{
-          'transports': ['websocket'],
-          'autoConnect': false,
-          'query': {
-            'userName': widget.user,
-            'registrationToken': registrationToken
-          }
-        });
+    socket = io.io('https://5bd0-202-142-81-2.in.ngrok.io', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false,
+      'query': {'userName': widget.user, 'registrationToken': registrationToken}
+    });
     socket.connect();
     socket.onConnect((_) {
       debugPrint('connected to websocket');
